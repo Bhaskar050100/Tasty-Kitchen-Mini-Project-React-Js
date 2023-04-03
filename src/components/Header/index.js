@@ -1,110 +1,137 @@
-import {Link, withRouter} from 'react-router-dom'
-
-import {AiFillHome} from 'react-icons/ai'
-import {FaSearch} from 'react-icons/fa'
-import {BsFillCartFill} from 'react-icons/bs'
-
+import {Component} from 'react'
 import Cookies from 'js-cookie'
+import {Link, withRouter} from 'react-router-dom'
+import {BiMenu} from 'react-icons/bi'
+import {IoCloseSharp} from 'react-icons/io5'
+import CartContext from '../../context/CartContext'
 
 import './index.css'
 
-const Header = props => {
-  const onClickLogout = () => {
-    const {history} = props
+class Header extends Component {
+  state = {menuOpen: false}
+
+  logoutBtn = () => {
+    const {history} = this.props
     Cookies.remove('jwt_token')
     history.replace('/login')
   }
 
-  const renderMobileBottomMenuBar = () => (
-    <nav className="mobile-bottom-navbar">
-      <Link to="/" className="nav-link">
-        <button type="button" className="mobile-nav-button">
-          <AiFillHome />
-          <p className="mobile-nav-title active-mobile-nav">Home</p>
-        </button>
-      </Link>
-      <Link to="/find-food" className="nav-link">
-        <button type="button" className="mobile-nav-button">
-          <FaSearch />
-          <p className="mobile-nav-title">Find Food</p>
-        </button>
-      </Link>
-      <Link to="/cart" className="nav-link">
-        <button type="button" className="mobile-nav-button">
-          <BsFillCartFill />
-          <p className="mobile-nav-title">Cart</p>
-        </button>
-      </Link>
-    </nav>
-  )
+  exitMenu = () => {
+    this.setState({menuOpen: false})
+  }
 
-  return (
-    <>
-      <nav className="nav-header">
-        <div className="nav-content">
-          <div className="nav-bar-mobile-logo-container">
-            <Link to="/" className="nav-link">
-              <div className="header-logo-container">
-                <img
-                  src="https://res.cloudinary.com/dw1fcsurf/image/upload/v1635493897/Tasty%20Kitchen/Navigation/Frame_274_jy40cc.png"
-                  alt="website logo"
-                  className="website-logo-mobile"
-                />
-                <p className="logo-name">Tasty Kitchens</p>
-              </div>
-            </Link>
-            <button
-              type="button"
-              className="logout-desktop-btn-mobile"
-              onClick={onClickLogout}
-            >
-              Logout
-            </button>
-          </div>
+  optionColor = path => {
+    const {history} = this.props
+    const currentPath = history.location.pathname
+    if (currentPath === path) {
+      return '#F7931E'
+    }
+    return '#334155'
+  }
 
-          <div className="nav-bar-large-container">
-            <Link to="/" className="nav-link">
-              <div className="header-logo-container">
-                <img
-                  className="website-logo"
-                  src="https://res.cloudinary.com/dw1fcsurf/image/upload/v1635493897/Tasty%20Kitchen/Navigation/Frame_274_jy40cc.png"
-                  alt="website logo"
-                />
-                <p className="logo-name">Tasty Kitchens</p>
-              </div>
-            </Link>
-            <ul className="nav-menu">
-              <li className="nav-menu-item">
-                <Link to="/" className="nav-link">
-                  Home
-                </Link>
-              </li>
+  openMenu = () => {
+    this.setState({menuOpen: true})
+  }
 
-              <li className="nav-menu-item">
-                <Link to="/find-food" className="nav-link">
-                  Find Food
-                </Link>
-              </li>
-
-              <li className="nav-menu-item">
-                <Link to="/cart" className="nav-link">
-                  Cart
-                </Link>
-              </li>
-            </ul>
-            <button
-              type="button"
-              className="logout-desktop-btn"
-              onClick={onClickLogout}
-            >
-              Logout
-            </button>
-          </div>
-        </div>
-      </nav>
-      {renderMobileBottomMenuBar()}
-    </>
-  )
+  render() {
+    const {menuOpen} = this.state
+    return (
+      <CartContext.Consumer>
+        {value => {
+          const {cartList} = value
+          const cartNum = cartList.length > 0
+          const totalItem = cartNum ? <sup>{cartList.length}</sup> : ''
+          return (
+            <>
+              <nav className="nav-bar">
+                <div className="logo-container">
+                  <Link to="/" className="link-style ">
+                    <img
+                      src="https://res.cloudinary.com/dtbarluca/image/upload/v1669706558/Frame_274_hsoezn.png"
+                      alt="website logo"
+                      className="logo-size"
+                    />
+                  </Link>
+                  <h1 className="companey-name-header">Tasty Kitchen</h1>
+                </div>
+                <ul className="nav-link-list-desktop">
+                  <Link to="/" className="link-style ">
+                    <li
+                      className="list-style li"
+                      style={{color: this.optionColor('/')}}
+                    >
+                      Home
+                    </li>
+                  </Link>
+                  <Link to="/cart" className="link-style ">
+                    <li
+                      className="list-style li"
+                      style={{color: this.optionColor('/cart')}}
+                    >
+                      Cart{totalItem}
+                    </li>
+                  </Link>
+                  <li>
+                    <button
+                      type="button"
+                      className="logout-btn"
+                      onClick={this.logoutBtn}
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+                <button
+                  type="button"
+                  className="mobile-view-menu"
+                  onClick={this.openMenu}
+                >
+                  <BiMenu size={24} />
+                </button>
+              </nav>
+              {menuOpen && (
+                <div className="mobile-view-menu-options">
+                  <ul className="nav-link-list-mobile">
+                    <Link to="/" className="link-style ">
+                      <li
+                        className="list-style li"
+                        style={{color: this.optionColor('/')}}
+                      >
+                        Home
+                      </li>
+                    </Link>
+                    <Link to="/cart" className="link-style ">
+                      <li
+                        className="list-style li"
+                        style={{color: this.optionColor('/cart')}}
+                      >
+                        Cart{totalItem}
+                      </li>
+                    </Link>
+                    <li>
+                      <button
+                        type="button"
+                        className="logout-btn"
+                        onClick={this.logoutBtn}
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
+                  <button
+                    type="button"
+                    className="close-menu"
+                    onClick={this.exitMenu}
+                  >
+                    <IoCloseSharp size={22} />
+                  </button>
+                </div>
+              )}
+            </>
+          )
+        }}
+      </CartContext.Consumer>
+    )
+  }
 }
-
 export default withRouter(Header)

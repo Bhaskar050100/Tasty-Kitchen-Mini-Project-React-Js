@@ -4,32 +4,38 @@ import {
   FaTwitter,
   FaFacebookSquare,
 } from 'react-icons/fa'
-
 import './index.css'
 
 const Footer = () => (
-  <div className="footer-container">
-    <div className="footer-heading-container">
-      <img
-        src="https://res.cloudinary.com/dw1fcsurf/image/upload/v1635566386/Tasty%20Kitchen/Footer/Frame_275_rdthpt.png"
-        alt="website-footer-logo"
-        className="website-footer-logo-mobile"
-      />
-      s<h1 className="footer-heading">Tasty Kitchens</h1>
+  <>
+    <div className="footer-container">
+      <div className="footer-content">
+        <div className="footer-logo-assembly">
+          <img
+            src="https://res.cloudinary.com/dtbarluca/image/upload/v1669810063/Frame_275_gveseh.png"
+            alt="website-footer-logo"
+          />
+          <h1 className="footer-company-style">Tasty Kitchens</h1>
+        </div>
+        <p className="content-footer">
+          The only thing we are serious about is food. Contact us on
+        </p>
+        <div className="social-media-icons">
+          <FaPinterestSquare
+            testid="pintrest-social-icon"
+            color="white"
+            size={22}
+          />
+          <FaInstagram testid="instagram-social-icon" color="white" size={22} />
+          <FaTwitter testid="twitter-social-icon" color="white" size={22} />
+          <FaFacebookSquare
+            testid="facebook-social-icon"
+            color="white"
+            size={22}
+          />
+        </div>
+      </div>
     </div>
-    <p className="footer-para">
-      The only thing we are serious about is food. Contact us on
-    </p>
-    <div className="social-container">
-      <FaPinterestSquare
-        testid="pintrest-social-icon"
-        className="social-icon"
-      />
-      <FaInstagram testid="instagram-social-icon" className="social-icon" />
-      <FaTwitter testid="twitter-social-icon" className="social-icon" />
-      <FaFacebookSquare testid="facebook-social-icon" className="social-icon" />
-    </div>
-  </div>
+  </>
 )
-
 export default Footer

@@ -1,77 +1,52 @@
 .footer-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: #0f172a;
-  min-height: 30vh;
-  margin-top: 20px;
-  padding: 40px;
-  z-index: 3;
-  position: absolute;
+  height: 256px;
   width: 100%;
-}
-@media screen and (min-width: 768px) {
-  .footer-container {
-    padding: 100px;
-  }
-}
-.footer-heading-container {
+  left: 0px;
+  top: 1636px;
+  border-radius: 0px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
-.website-footer-logo-mobile {
-  width: 35px;
-  height: 29px;
-  margin-right: 15px;
+.footer-logo-assembly {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
 }
-@media screen and (min-width: 768px) {
-  .website-footer-logo-mobile {
-    display: none;
-  }
-}
-.footer-heading {
-  font-family: DM Sans;
+.footer-company-style {
+  height: 24px;
+  left: 37.5%;
+  right: 22.78%;
+  top: calc(50% - 24px / 2 - 64px);
+  font-family: 'DM Sans';
   font-style: italic;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  /* identical to box height, or 120% */
-
   color: #ffffff;
 }
-@media screen and (min-width: 768px) {
-  .footer-heading {
-    font-size: 32px;
-    line-height: 48px;
-  }
-}
-.footer-para {
-  font-family: DM Sans;
+.content-footer {
+  width: 280px;
+  height: 48px;
+  left: 40px;
+  top: 104px;
+  font-family: 'DM Sans';
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
   font-size: 14px;
   line-height: 24px;
-  /* or 171% */
-
   text-align: center;
-
   color: #ffffff;
 }
-@media screen and (min-width: 768px) {
-  .footer-para {
-    font-size: 24px;
-    line-height: 32px;
-  }
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.social-icon {
-  color: #ffffff;
-  margin-right: 30px;
-  font-size: 24px;
-}
-@media screen and (min-width: 768px) {
-  .social-icon {
-    margin-right: 40px;
-    font-size: 40px;
-  }
+.social-media-icons {
+  display: flex;
+  gap: 12px;
 }

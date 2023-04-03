@@ -2,23 +2,22 @@ import {Link} from 'react-router-dom'
 import './index.css'
 
 const NotFound = () => (
-  <div className="restaurant-error-view-container">
+  <div className="not-found">
     <img
-      src="https://res.cloudinary.com/dw1fcsurf/image/upload/v1635819172/Tasty%20Kitchen/PageNotFound/Group_wbimtk.png"
+      src="https://res.cloudinary.com/dtbarluca/image/upload/v1669999414/erroring_1_svootq.png"
       alt="not found"
-      className="restaurant-failure-img"
+      className="not-image"
     />
-    <h1 className="restaurant-failure-heading-text">Page Not Found</h1>
-    <p className="restaurant-failure-description">
-      we are sorry, the page you requested could not be found Please go back to
+    <h1>Page Not Found</h1>
+    <p className="not-text">
+      We are sorry, the page you requested could not be found.Please go back to
       the homepage
     </p>
     <Link to="/">
-      <button className="error-button" type="button">
+      <button className="checkout-btn btn" type="button">
         Home Page
       </button>
     </Link>
   </div>
 )
-
 export default NotFound
